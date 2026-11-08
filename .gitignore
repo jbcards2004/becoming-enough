@@ -7,3 +7,6 @@ dist/
 .dev.vars*
 .wrangler/
 *.sqlite
+
+vercel-dist/
+.vercel/

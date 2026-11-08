@@ -1,5 +1,11 @@
 import { assets } from './assets.js';
 const headers = {'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
+async function bridgeAuthorized(request, env) {
+ const key=env.VERCEL_STORY_BRIDGE_KEY;const supplied=request.headers.get('x-story-bridge-key');
+ if(!key||!supplied)return false;
+ const hash=async value=>new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)));
+ const [a,b]=await Promise.all([hash(key),hash(supplied)]);let mismatch=0;for(let i=0;i<a.length;i++)mismatch|=a[i]^b[i];return mismatch===0;
+}
 const json = (body,status=200)=>new Response(JSON.stringify(body),{status,headers});
 export default {
  async fetch(request,env){
@@ -15,7 +21,7 @@ export default {
     }
     if(request.method==='POST'){
      if(request.headers.get('Origin')!==url.origin)return json({error:'Please share from this site.'},403);
-     if(!request.headers.get('oai-authenticated-user-id'))return json({error:'Please sign in to share your story.',signIn:true},401);
+     if(!request.headers.get('oai-authenticated-user-id') && !await bridgeAuthorized(request,env))return json({error:'Please sign in to share your story.',signIn:true},401);
      if(!request.headers.get('Content-Type')?.includes('application/json'))return json({error:'Invalid request.'},415);
      if(Number(request.headers.get('Content-Length')||0)>60000)return json({error:'Please keep your story under 12,000 characters.'},413);
      const raw=await request.text();if(raw.length>16000)return json({error:'Please keep your story under 12,000 characters.'},413);

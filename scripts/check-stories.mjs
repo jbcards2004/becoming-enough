@@ -15,4 +15,7 @@ let result=await (await worker.fetch(new Request(origin+'/api/stories'),env)).js
 for(let i=0;i<12;i++)assert.equal((await post({...input,requestId:crypto.randomUUID()})).status,201);
 result=await (await worker.fetch(new Request(origin+'/api/stories'),env)).json();assert.equal(result.stories.length,10);assert.ok(result.next);
 const next=await (await worker.fetch(new Request(origin+'/api/stories?before='+encodeURIComponent(result.next)),env)).json();assert.equal(next.stories.length,3);assert.equal(next.next,null);
+env.VERCEL_STORY_BRIDGE_KEY='local-test-key';
+assert.equal((await post({...input,requestId:crypto.randomUUID()},{'oai-authenticated-user-id':'','x-story-bridge-key':'incorrect'})).status,401);
+assert.equal((await post({...input,requestId:crypto.randomUUID()},{'oai-authenticated-user-id':'','x-story-bridge-key':'local-test-key'})).status,201);
 DB.close();console.log('Passed: SQLite persistence, consent, authorization, origin, validation, idempotency, anonymous responses, pagination.');
