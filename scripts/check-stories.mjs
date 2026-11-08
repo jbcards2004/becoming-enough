@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {localDB} from './local-db.mjs';
+import worker from '../dist/server/index.js';
+const DB=localDB();const env={DB};const origin='https://example.test';
+const post=(input,extra={})=>worker.fetch(new Request(origin+'/api/stories',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json','oai-authenticated-user-id':'test-user',...extra},body:JSON.stringify(input)}),env);
+assert.equal((await (await worker.fetch(new Request(origin+'/api/stories'),env)).json()).stories.length,0);
+let input={title:'A story',body:'I tried something new.',share:true,requestId:crypto.randomUUID()};
+assert.equal((await post({...input,share:false})).status,400);
+assert.equal((await post(input,{'oai-authenticated-user-id':''})).status,401);
+assert.equal((await post(input,{Origin:'https://another.test'})).status,403);
+assert.equal((await post({...input,body:' '})).status,400);
+assert.equal((await post({...input,body:'a'.repeat(12001)})).status,400);
+assert.equal((await post(input)).status,201);assert.equal((await post(input)).status,201);
+let result=await (await worker.fetch(new Request(origin+'/api/stories'),env)).json();assert.equal(result.stories.length,1);assert.equal(result.stories[0].body,input.body);assert.equal(Object.keys(result.stories[0]).sort().join(','),'body,created_at,id,title');
+for(let i=0;i<12;i++)assert.equal((await post({...input,requestId:crypto.randomUUID()})).status,201);
+result=await (await worker.fetch(new Request(origin+'/api/stories'),env)).json();assert.equal(result.stories.length,10);assert.ok(result.next);
+const next=await (await worker.fetch(new Request(origin+'/api/stories?before='+encodeURIComponent(result.next)),env)).json();assert.equal(next.stories.length,3);assert.equal(next.next,null);
+DB.close();console.log('Passed: SQLite persistence, consent, authorization, origin, validation, idempotency, anonymous responses, pagination.');

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="700" viewBox="0 0 700 700">
+  <defs>
+    <g id="daisy">
+      <g fill="#a875c2">
+        <ellipse cy="-26" rx="11" ry="24"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(45)"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(90)"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(135)"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(180)"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(225)"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(270)"/>
+        <ellipse cy="-26" rx="11" ry="24" transform="rotate(315)"/>
+      </g>
+      <circle r="12" fill="#f3b833"/>
+    </g>
+    <g id="bloom">
+      <g fill="#ee9c55">
+        <circle cy="-18" r="16"/>
+        <circle cy="-18" r="16" transform="rotate(72)"/>
+        <circle cy="-18" r="16" transform="rotate(144)"/>
+        <circle cy="-18" r="16" transform="rotate(216)"/>
+        <circle cy="-18" r="16" transform="rotate(288)"/>
+      </g>
+      <circle r="10" fill="#e7bd38"/>
+    </g>
+  </defs>
+  <g opacity=".18">
+    <path d="M58 262 Q99 207 63 132 M76 224 Q110 218 116 189 M66 175 Q38 169 28 145 M623 633 Q584 572 629 494 M609 568 Q642 567 657 541" fill="none" stroke="#a47ab9" stroke-width="2"/>
+    <use href="#daisy" transform="translate(63 111) rotate(-12) scale(.9)"/>
+    <use href="#bloom" transform="translate(119 180) rotate(15) scale(.65)"/>
+    <use href="#bloom" transform="translate(628 474) rotate(-15) scale(1.1)"/>
+    <use href="#daisy" transform="translate(657 532) rotate(10) scale(.5)"/>
+    <use href="#daisy" transform="translate(326 365) rotate(20) scale(.36)"/>
+    <use href="#bloom" transform="translate(400 650) scale(.35)"/>
+    <circle cx="191" cy="535" r="4" fill="#e7bd38"/>
+    <circle cx="490" cy="160" r="5" fill="#ee9c55"/>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+/* A warm purple, orange and yellow garden. */
+html:root {
+  --ink: #44265f;
+  --muted: #706079;
+  --paper: #fffaf2;
+  --line: #e5d7eb;
+  --lav: #eee2f7;
+}
+body { background-image: url('flowers.svg'); background-size: 700px 700px; }
+body header { background: #fffaf2ed; }
+body .mark, body .closing > span { color: #b95a21; }
+body nav span { background: #efe0fa; }
+body em { color: #8650a1; }
+body .button { background: #643583; color: #fff; }
+body .button:hover { background: #4e256b; }
+body button:focus-visible, body a:focus-visible { outline-color: #b65419; }
+body .art { background: #f4e7fc; }
+body .sun { background: #f7ce56; }
+body .arch-back { background: #c5a0de; }
+body .arch-front { background: #f4a460; }
+body .art svg path[stroke] { stroke: #71418a; }
+body .art svg path[fill='#53765b'] { fill: #8f5ba6; }
+body .spark { color: #9c4818; }
+body .reassure { background: #ffedaf; }
+body .reassure b { color: #a44c1a; }
+body .steps article { border-color: #d7bfdf; }
+body .steps span, body .example-grid span { color: #7f468f; }
+body .journal-wrap {
+  background-color: #f0e5f9;
+  background-image: url('flowers.svg');
+  background-size: 700px 700px;
+}
+body .privacy { color: #6b5877; }
+body .grounding { background: #fff3cb; }
+body .journal-card { background: #fffdf8; border-color: #dac3e8; box-shadow: 0 8px 25px #63358312; }
+body .card-top span:last-child { color: #76637d; }
+body .progress i { background: #eaddf2; }
+body .progress .on { background: #b65a25; }
+body textarea, body input { border-color: #dfcde8; background: #fffcf6; }
+body textarea:focus, body input:focus { outline-color: #a372bd; }
+body .secondary { border-color: #b28ac8; background: #fffcf5; }
+body .secondary:hover { background: #f2e5fa; }
+body .secondary:disabled { opacity: .55; cursor: default; }
+body .save-note, body #wordcount { color: #76637d; }
+body .example-grid article { background: #f1e6fa; }
+body .example-grid article:nth-child(2) { background: #ffead8; }
+body .example-grid article:nth-child(3) { background: #fff0b9; }
+body .example-grid hr { border-color: #d9c4df; }
+body .empty { border-color: #c5a4d5; background: #fffaf2eb; }
+body .closing {
+  background-color: #f9d6b8;
+  background-image: url('flowers.svg');
+  background-size: 700px 700px;
+}
+body footer { background: #fffaf2ed; }
+body .review .affirm { background: #f0e5f9; }
+
+body #journal-form { margin-top: 28px; }
+
+.anonymous-banner{background:#ffedaf;color:#44265f;padding:12px 6%;text-align:center;font-size:13px}body .share-consent{display:flex;align-items:flex-start;gap:10px;font:12px/1.6 'DM Sans',sans-serif;margin-top:20px}body .share-consent input{width:18px;height:18px;flex:none;margin:1px 0 0;accent-color:#643583}.community{max-width:1160px;margin:auto;padding:65px 35px}.community-intro{color:var(--muted);max-width:650px}.community article{background:#fffdf8;border:1px solid #dac3e8;border-radius:10px;padding:25px;margin:20px 0}.community article h3{font:28px Georgia,serif;margin:12px 0}.community article p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.community article .story-meta{font-size:11px;color:var(--muted)}.community details summary{cursor:pointer;color:#643583;font-weight:600}.button:disabled{opacity:.65;cursor:wait}@media(max-width:760px){.community{padding:40px 6%}nav{flex-wrap:wrap;justify-content:flex-end}}

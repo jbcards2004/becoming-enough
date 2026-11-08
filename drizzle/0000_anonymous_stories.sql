@@ -1,0 +1,7 @@
+CREATE TABLE stories (
+ id TEXT PRIMARY KEY NOT NULL,
+ request_id TEXT NOT NULL UNIQUE,
+ title TEXT NOT NULL,
+ body TEXT NOT NULL,
+ created_at TEXT NOT NULL
+);
